@@ -15,4 +15,6 @@ Na pasta raiz do projeto, você encontrará um arquivo `Dockerfile` que configur
    ```bash
    docker build -t imagem_bancocliente_mysql .
 
-3. **Execute a 
+3. **Execute o Container** : 
+   ```bash
+   docker run --name container_clientedb -d -p 3306:3306 imagem_bancocliente_mysql
