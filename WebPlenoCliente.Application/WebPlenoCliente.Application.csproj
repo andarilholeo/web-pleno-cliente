@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\WebPlenoCliente.Infra\WebPlenoCliente.Infra.csproj" />
+  </ItemGroup>
+
 </Project>
