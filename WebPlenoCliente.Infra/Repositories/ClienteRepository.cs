@@ -29,7 +29,7 @@ namespace WebPlenoCliente.Infra.Repositories
 
         public async Task<Cliente> AdicionarClienteAsync(Cliente cliente)
         {
-            var sql = "INSERT INTO Clientes (Nome, Email, Telefone, DataNascimento) VALUES (@Nome, @Email, @Telefone, @DataNascimento); SELECT LAST_INSERT_ID();";
+            var sql = "INSERT INTO Clientes (nome, email, telefone, data_nascimento) VALUES (@Nome, @Email, @Telefone, @DataNascimento); SELECT LAST_INSERT_ID();";
             var clienteId = await _dbConnection.QuerySingleAsync<int>(sql, cliente);
 
             return await BuscarClientePorIdAsync(clienteId);
@@ -37,7 +37,7 @@ namespace WebPlenoCliente.Infra.Repositories
 
         public async Task AlterarClienteAsync(Cliente cliente)
         {
-            var sql = "UPDATE Clientes SET Nome = @Nome, Email = @Email, Telefone = @Telefone, DataNascimento = @DataNascimento WHERE Id = @Id";
+            var sql = "UPDATE Clientes SET nome = @Nome, email = @Email, telefone = @Telefone, data_nascimento = @DataNascimento WHERE Id = @Id";
             var result = await _dbConnection.ExecuteAsync(sql, cliente);
         }
 
