@@ -28,6 +28,13 @@ namespace WebPlenoCliente.Infra.Repositories
             return await _dbConnection.QuerySingleOrDefaultAsync<Endereco>(sql, new { Id = id });
         }
 
+        public async Task<IEnumerable<Endereco>> BuscarEnderecosAsync()
+        {
+            var sql = "SELECT id, cliente_id AS ClienteID, cep, rua, numero, complemento, bairro, cidade, estado FROM Enderecos";
+            
+            return await _dbConnection.QueryAsync<Endereco>(sql);
+        }
+
         public async Task<Endereco> AdicionarEnderecoAsync(Endereco endereco)
         {
             var sql = "INSERT INTO Enderecos (cliente_id, cep, rua, numero, complemento, bairro, cidade, estado) VALUES (@ClienteID, @CEP, @Rua, @Numero, @Complemento, @Bairro, @Cidade, @Estado); SELECT LAST_INSERT_ID();";
@@ -46,6 +53,24 @@ namespace WebPlenoCliente.Infra.Repositories
         {
             var sql = "DELETE FROM Enderecos WHERE Id = @Id";
             await _dbConnection.ExecuteAsync(sql, new { Id = id });
+        }
+
+        public async Task<bool> EnderecoExisteAsync(Endereco endereco)
+        {
+            var sql = @"
+            SELECT COUNT(1) 
+            FROM Enderecos 
+            WHERE cliente_id = @ClienteID 
+              AND cep = @CEP 
+              AND rua = @Rua 
+              AND numero = @Numero 
+              AND complemento = @Complemento 
+              AND bairro = @Bairro 
+              AND cidade = @Cidade 
+              AND estado = @Estado";
+            var count = await _dbConnection.ExecuteScalarAsync<int>(sql, endereco);
+
+            return count > 0;
         }
     }
 }
