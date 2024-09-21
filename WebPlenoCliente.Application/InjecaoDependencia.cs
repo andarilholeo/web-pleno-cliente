@@ -12,6 +12,7 @@ namespace WebPlenoCliente.Application
         {
             services.AddScoped<IDbConnection>(sp => new MySqlConnection(connectionString));
             services.AddScoped<IClienteRepository, ClienteRepository>();
+            services.AddScoped<IEnderecoRepository, EnderecoRepository>();
         }
     }
 }

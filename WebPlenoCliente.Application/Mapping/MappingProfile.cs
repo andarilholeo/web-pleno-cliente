@@ -9,6 +9,7 @@ namespace WebPlenoCliente.Application.Mapping
         public MappingProfile()
         {
             CreateMap<Cliente, ClienteDTO>().ReverseMap();
+            CreateMap<Endereco, EnderecoDTO>().ReverseMap();
         }
     }
 }

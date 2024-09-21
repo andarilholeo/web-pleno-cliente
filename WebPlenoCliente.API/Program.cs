@@ -1,5 +1,6 @@
 using WebPlenoCliente.Application;
 using WebPlenoCliente.Application.Services.Cliente;
+using WebPlenoCliente.Application.Services.EnderecoService;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,7 +9,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 
 builder.Services.AddInfrastructureServices(builder.Configuration.GetConnectionString("MySQLConnection"));
+
 builder.Services.AddScoped<IClienteService, ClienteService>();
+builder.Services.AddScoped<IEnderecoService, EnderecoService>();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
