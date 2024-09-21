@@ -1,6 +1,4 @@
-﻿using static System.Runtime.InteropServices.JavaScript.JSType;
-
-namespace WebPlenoCliente.Domain.Entidades
+﻿namespace WebPlenoCliente.Domain.Entidades
 {
     public class Cliente
     {
