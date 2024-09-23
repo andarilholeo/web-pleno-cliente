@@ -1,6 +1,7 @@
 using WebPlenoCliente.Application;
 using WebPlenoCliente.Application.Services.Cliente;
 using WebPlenoCliente.Application.Services.EnderecoService;
+using WebPlenoCliente.Application.ServicosExternos;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,8 +11,16 @@ builder.Services.AddControllers();
 
 builder.Services.AddInfrastructureServices(builder.Configuration.GetConnectionString("MySQLConnection"));
 
+builder.Services.AddHttpClient<IApiViaCEP, ApiViaCep>(client =>
+{
+    var configuration = builder.Configuration;
+    var baseUrl = configuration.GetSection("ApiSettings:BaseAPIViaCep").Value;
+    client.BaseAddress = new Uri(baseUrl);
+});
+
 builder.Services.AddScoped<IClienteService, ClienteService>();
 builder.Services.AddScoped<IEnderecoService, EnderecoService>();
+builder.Services.AddScoped<IApiViaCEP, ApiViaCep>();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
