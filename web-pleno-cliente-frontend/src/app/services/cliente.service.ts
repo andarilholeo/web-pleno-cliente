@@ -8,8 +8,7 @@ import { ClienteDTO } from '../models/clienteDTO';
 })
 
 export class ClienteService {
-  private apiUrl = 'http://localhost:5000/api/cliente'; // Altere para a URL da sua API
-
+  private apiUrl = 'http://localhost:5000/api/cliente';
   constructor(private http: HttpClient) { }
 
   getClientes(): Observable<ClienteDTO[]> {
