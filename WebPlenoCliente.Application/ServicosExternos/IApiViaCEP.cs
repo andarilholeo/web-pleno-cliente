@@ -1,7 +1,9 @@
-﻿namespace WebPlenoCliente.Application.ServicosExternos
+﻿using WebPlenoCliente.Application.DTO;
+
+namespace WebPlenoCliente.Application.ServicosExternos
 {
     public interface IApiViaCEP
     {
-        Task<string> ConsultarEnderecoAsync(string cep);
+        Task<ResponseViaCEP> ConsultarEnderecoAsync(string cep);
     }
 }

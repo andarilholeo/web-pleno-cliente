@@ -36,6 +36,6 @@ namespace WebPlenoCliente.Application.DTO
 
 
         [JsonPropertyName("erro")]
-        public bool Status { get; set; } = false;
+        public bool erro { get; set; } = false;
     }
 }

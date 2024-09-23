@@ -1,6 +1,8 @@
 ﻿
 
 using Microsoft.Extensions.Configuration;
+using System.Text.Json;
+using WebPlenoCliente.Application.DTO;
 
 namespace WebPlenoCliente.Application.ServicosExternos
 {
@@ -15,7 +17,7 @@ namespace WebPlenoCliente.Application.ServicosExternos
             _configuration = configuration;
         }
 
-        public async Task<string> ConsultarEnderecoAsync(string cep)
+        public async Task<ResponseViaCEP> ConsultarEnderecoAsync(string cep)
         {
             var baseUrl = _configuration["ApiSettings:BaseAPIViaCep"];
 
@@ -23,7 +25,8 @@ namespace WebPlenoCliente.Application.ServicosExternos
             response.EnsureSuccessStatusCode();
 
             var content = await response.Content.ReadAsStringAsync();
-            return content;
+
+            return JsonSerializer.Deserialize<ResponseViaCEP>(content);
         }
     }
 }

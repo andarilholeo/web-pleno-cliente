@@ -38,14 +38,16 @@ namespace WebPlenoCliente.Application.Services.EnderecoService
 
         public async Task<EnderecoDTO> AdicionarEnderecoAsync(EnderecoDTO enderecoDto)
         {
-            var endereco = _mapper.Map<Endereco>(enderecoDto);
+            var enderecoMapeadoAPI = new Endereco();
 
-            if (!await _enderecoRepository.EnderecoExisteAsync(endereco))
+            if (!await _enderecoRepository.EnderecoExisteAsync(_mapper.Map<Endereco>(enderecoDto)))
             {
-                var teste = await _apiViaCEP.ConsultarEnderecoAsync(enderecoDto.CEP);
+                var enderecoAPI = await _apiViaCEP.ConsultarEnderecoAsync(enderecoDto.CEP);
+
+                enderecoMapeadoAPI = _mapper.Map<Endereco>(enderecoAPI);
             }
 
-            var novoEndereco = await _enderecoRepository.AdicionarEnderecoAsync(endereco);
+            var novoEndereco = await _enderecoRepository.AdicionarEnderecoAsync(_mapper.Map<Endereco>(enderecoDto));
             return _mapper.Map<EnderecoDTO>(novoEndereco);
         }
 

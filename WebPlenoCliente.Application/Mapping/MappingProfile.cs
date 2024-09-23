@@ -10,6 +10,7 @@ namespace WebPlenoCliente.Application.Mapping
         {
             CreateMap<Cliente, ClienteDTO>().ReverseMap();
             CreateMap<Endereco, EnderecoDTO>().ReverseMap();
+            CreateMap<Endereco, ResponseViaCEP>().ReverseMap();
         }
     }
 }
