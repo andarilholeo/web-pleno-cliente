@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "cliente-front": {
+    "WebPlenoCliente.Front": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/cliente-front",
+            "outputPath": "dist/web-pleno-cliente.front",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -32,7 +32,12 @@
             "styles": [
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [],
+            "server": "src/main.server.ts",
+            "prerender": true,
+            "ssr": {
+              "entry": "server.ts"
+            }
           },
           "configurations": {
             "production": {
@@ -53,7 +58,13 @@
             "development": {
               "optimization": false,
               "extractLicenses": false,
-              "sourceMap": true
+              "sourceMap": true,
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.development.ts"
+                }
+              ]
             }
           },
           "defaultConfiguration": "production"
@@ -62,10 +73,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "cliente-front:build:production"
+              "buildTarget": "WebPlenoCliente.Front:build:production"
             },
             "development": {
-              "buildTarget": "cliente-front:build:development"
+              "buildTarget": "WebPlenoCliente.Front:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -73,7 +84,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "buildTarget": "cliente-front:build"
+            "buildTarget": "WebPlenoCliente.Front:build"
           }
         },
         "test": {
@@ -99,6 +110,6 @@
     }
   },
   "cli": {
-    "analytics": "927693c7-058a-4259-b525-9059f3dadf33"
+    "analytics": "b232a0fd-b691-4718-bf62-73d4d408460b"
   }
 }

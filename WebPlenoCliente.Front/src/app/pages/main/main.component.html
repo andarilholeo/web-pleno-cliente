@@ -1,0 +1,53 @@
+
+<div class="container mt-5">
+    <button class="btn btn-success w-100" routerLinkActive="router-link-active"  >Cadastrar novo Usuário</button>
+    <button class="btn btn-success w-100" routerLinkActive="router-link-active"  >Cadastrar novo Endereço</button>
+    <div>
+        <label class="form-label">Pesquisar:</label>
+        <input class="form-control" type="text" placeholder="Qual usuário deseja buscar?" (input)="search($event)"/>
+    </div>
+
+
+
+    <table class="table table-hover table-bordered mt-5">
+        <thead class="table-dark">
+            <tr>
+                <th>Id</th>
+                <th>Nome Completo</th>
+                <th>Email</th>
+                <th>Cargo</th>
+                <th>Salário</th>
+                <th>Situação</th>
+                <th></th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @if(clientes.length > 0){
+                @for (cliente of clientes; track $index) {
+
+                    <tr>
+                        <td>{{cliente.id}}</td>
+                        <td>{{cliente.nome}}</td>
+                        <td>{{cliente.email}}</td>
+                        <td>{{cliente.telefone}}</td>
+                        <td>{{cliente.dataNascimento}}</td>
+
+                        <td>
+
+                            <button class="btn btn-warning mx-2">Editar</button>
+                            <button class="btn btn-info mx-2">Detalhes</button>
+                            <button class="btn btn-danger mx-2" (click)="deletar(cliente.id)" >Excluir</button>
+                        </td>
+                    </tr>
+                }
+            }@else {
+                <tr class="text-center">
+                    <td colspan="7">Nenhum usuário cadastrado</td>
+                </tr>
+            }
+
+
+        </tbody>
+    </table>
+</div>
