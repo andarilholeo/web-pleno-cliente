@@ -1,0 +1,32 @@
+<div class="container mt-5">
+    <form [formGroup]="clienteForm" (ngSubmit)="submit()" #formDir="ngForm">
+
+        <div class="mt-3">
+            <label class="form-label">Nome</label>
+            <input type="text" placeholder="Insira o Nome!" class="form-control" formControlName="nome" />
+        </div>
+
+        <div class="mt-3">
+            <label class="form-label">Email</label>
+            <input type="email" placeholder="Insira o Email!" class="form-control" formControlName="email" />
+        </div>
+
+
+        <div class="mt-3">
+            <label class="form-label">Telefone</label>
+            <input type="text" placeholder="Insira um Telefone!" class="form-control" formControlName="telefone" />
+        </div>
+
+
+        <div class="mt-3">
+            <label class="form-label">Data de Nascimento</label>
+            <input type="date" class="form-control" formControlName="dataNascimento" />
+        </div>
+
+
+        <div class="d-flex mt-3">
+            <button class="btn btn-success w-50 mx-1" type="submit">Cadastrar</button>
+            <a class="btn btn-info w-50" [routerLink]="['/']" >Voltar</a>
+        </div>
+    </form>
+</div>

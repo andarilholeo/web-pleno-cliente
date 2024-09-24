@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ClienteService } from '../../services/cliente.service';
 import { ClienteDTO } from '../../models/cliente.dto';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-main',
   standalone: true,
-  imports: [],
+  imports: [RouterModule],
   templateUrl: './main.component.html',
   styleUrl: './main.component.scss'
 })
@@ -40,5 +41,13 @@ export class MainComponent implements OnInit {
       console.log(response);
       window.location.reload();
     })
+  }
+
+  openModal(clienteId: number): void {
+    const modalElement = document.getElementById('enderecoModal');
+    if (modalElement) {
+      const modal = new (window as any).bootstrap.Modal(modalElement);
+      modal.show();
+    }
   }
 }

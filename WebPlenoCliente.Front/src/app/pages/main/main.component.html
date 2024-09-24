@@ -1,7 +1,10 @@
 
 <div class="container mt-5">
-    <button class="btn btn-success w-100" routerLinkActive="router-link-active"  >Cadastrar novo Usuário</button>
-    <button class="btn btn-success w-100" routerLinkActive="router-link-active"  >Cadastrar novo Endereço</button>
+    <div class="d-flex">
+        <button class="btn btn-success me-2" [routerLink]="['/cliente-cadastro']" routerLinkActive="router-link-active">Cadastrar novo Usuário</button>
+        <button class="btn btn-success" [routerLink]="['/endereco-cadastro']" routerLinkActive="router-link-active">Cadastrar novo Endereço</button>
+    </div>
+
     <div>
         <label class="form-label">Pesquisar:</label>
         <input class="form-control" type="text" placeholder="Qual usuário deseja buscar?" (input)="search($event)"/>
@@ -13,11 +16,11 @@
         <thead class="table-dark">
             <tr>
                 <th>Id</th>
-                <th>Nome Completo</th>
+                <th>Nome</th>
                 <th>Email</th>
-                <th>Cargo</th>
-                <th>Salário</th>
-                <th>Situação</th>
+                <th>Telefone</th>
+                <th>Data Nascimento</th>
+                <th>Endereço</th>
                 <th></th>
             </tr>
         </thead>
@@ -32,6 +35,9 @@
                         <td>{{cliente.email}}</td>
                         <td>{{cliente.telefone}}</td>
                         <td>{{cliente.dataNascimento}}</td>
+                        <td>
+                            <button class="btn btn-primary" (click)="openModal(cliente.id)">Endereço</button>
+                        </td>
 
                         <td>
 
